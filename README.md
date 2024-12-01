@@ -45,8 +45,9 @@ desplazará automáticamente hasta el mensaje más reciente.
   <img src="screenshots/discoveryList.png" alt="discoveryList" style="width: 12vw;"/>
   <img src="screenshots/meList.png" alt="meList" style="width: 12vw;"/>
 </div>
+
 ### Vista ChatPage
-![ChatPage](screenshots/chatPage.png)
+![chatPage](screenshots/chatPage.png)
 
 ---
 
@@ -66,7 +67,9 @@ desplazará automáticamente hasta el mensaje más reciente.
 - **Google Accompanist Pager**
 
 ---
+
 ## 🚀 Instalación
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/dsqrwym/WeChat_Interface.git
+
