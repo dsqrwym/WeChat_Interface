@@ -45,7 +45,8 @@ desplazará automáticamente hasta el mensaje más reciente.
   <img src="screenshots/discoveryList.png" alt="discoveryList" width="12vw"/>
   <img src="screenshots/meList.png" alt="meList" width="12vw"/>
 </div>
-
+### Vista ChatPage
+![ChatPage](screenshots/chatPage.png)
 
 ---
 
