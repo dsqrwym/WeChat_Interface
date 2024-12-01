@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">WeChat Interface</string>
+    <string name="icon">图标</string>
+    <string name="icon_more">更多</string>
+    <string name="tab_item_chat">聊天</string>
+    <string name="tab_item_contacts">通讯录</string>
+    <string name="tab_item_discovery">发现</string>
+    <string name="tab_item_me">我</string>
+    <string name="chat_avatar">头像</string>
+    <string name="contact_add">新的朋友</string>
+    <string name="contact_chat">仅聊天</string>
+    <string name="contact_group">群聊</string>
+    <string name="contact_tag">标签</string>
+    <string name="contact_official">公众号</string>
+    <string name="contact_friend">朋友</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="login_welcome">欢迎回来</string>
+    <string name="login_userid">用户号</string>
+    <string name="login_password">密码</string>
+    <string name="login_password_mask">*</string>
+    <string name="login_password_forget">忘记密码</string>
+    <string name="discover_moments">朋友圈</string>
+    <string name="discover_channels">视频号</string>
+    <string name="discover_looks">看一看</string>
+    <string name="discover_search">搜一搜</string>
+    <string name="discover_nearby">直播和附近</string>
+    <string name="me_add_status">+ 状态</string>
+    <string name="me_qrcode">二维码</string>
+    <string name="me_pay">支付</string>
+    <string name="me_favorites">收藏</string>
+    <string name="me_cards">卡包</string>
+    <string name="me_stickers">卡包</string>
+    <string name="me_settings">设置</string>
+</resources>

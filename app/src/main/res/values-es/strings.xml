@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Interfaz de WeChat</string>
+    <string name="icon">Ícono</string>
+    <string name="icon_more">Más</string>
+    <string name="tab_item_chat">Chats</string>
+    <string name="tab_item_contacts">Contactos</string>
+    <string name="tab_item_discovery">Descubre</string>
+    <string name="tab_item_me">Yo</string>
+    <string name="chat_avatar">Foto de perfil</string>
+    <string name="contact_add">Añadir amigos</string>
+    <string name="contact_chat">Solo chat</string>
+    <string name="contact_group">Grupos</string>
+    <string name="contact_tag">Etiquetas</string>
+    <string name="contact_official">Cuentas oficiales</string>
+    <string name="contact_friend">Amigos</string>
+    <string name="register">Registrarse</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="login_welcome">Bienvenido de nuevo</string>
+    <string name="login_userid">Número de usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_password_mask">•</string>
+    <string name="login_password_forget">Olvidaste tu contraseña?</string>
+    <string name="discover_moments">Momentos</string>
+    <string name="discover_channels">Canales</string>
+    <string name="discover_looks">Ver</string>
+    <string name="discover_search">Buscar</string>
+    <string name="discover_nearby">En vivo y cerca</string>
+    <string name="me_add_status">+ Añadir estado</string>
+    <string name="me_qrcode">Mi código QR</string>
+    <string name="me_pay">Pagar</string>
+    <string name="me_favorites">Favoritos</string>
+    <string name="me_cards">Tarjetas</string>
+    <string name="me_stickers">Pegatinas</string>
+    <string name="me_settings">Configuración</string>
+</resources>

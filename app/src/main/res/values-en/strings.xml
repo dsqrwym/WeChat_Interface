@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeChat</string>
+    <string name="icon">Icon</string>
+    <string name="icon_more">More</string>
+    <string name="tab_item_chat">Chats</string>
+    <string name="tab_item_contacts">Contacts</string>
+    <string name="tab_item_discovery">Discover</string>
+    <string name="tab_item_me">Me</string>
+    <string name="chat_avatar">Profile Picture</string>
+    <string name="contact_add">Add Friends</string>
+    <string name="contact_chat">Chat Only</string>
+    <string name="contact_group">Groups</string>
+    <string name="contact_tag">Tags</string>
+    <string name="contact_official">Official Accounts</string>
+    <string name="contact_friend">Friends</string>
+    <string name="register">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="login_welcome">Welcome back</string>
+    <string name="login_userid">User ID</string>
+    <string name="login_password">Password</string>
+    <string name="login_password_mask">•</string>
+    <string name="login_password_forget">Forgot password?</string>
+    <string name="discover_moments">Moments</string>
+    <string name="discover_channels">Channels</string>
+    <string name="discover_looks">Look Around</string>
+    <string name="discover_search">Search</string>
+    <string name="discover_nearby">Live &amp; Nearby</string>
+    <string name="me_add_status">+ Add Status</string>
+    <string name="me_qrcode">My QR Code</string>
+    <string name="me_pay">Pay</string>
+    <string name="me_favorites">Favorites</string>
+    <string name="me_cards">Cards</string>
+    <string name="me_stickers">Stickers</string>
+    <string name="me_settings">Settings</string>
+</resources>
