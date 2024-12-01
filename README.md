@@ -30,20 +30,20 @@ desplazará automáticamente hasta el mensaje más reciente.
   + En la parte inferior de la pantalla de home, hay una barra de
     navegación que permite al usuario regresar a cuatro vistas diferentes:
       * Cuatro páginas: La pantalla principal está compuesta por cuatro páginas: 
-          1. chatList: La primera página muestra la lista de chats, y el usuario puede hacer clic en un chat para entrar en la pantalla de chat. ![ChatList](screenshots/chatList.png)
-          2. contactList: Muestra la lista de contactos del usuario (amigos). ![ContactList](screenshots/contactList.png)
-          3. discoveryList: Solo visual. ![Discovery](screenshots/discoveryList.png)
-          4. meList: Muestra la información personal del usuario, como su ID y foto de perfil.![MeList](screenshots/meList.png)
+          1. chatList: La primera página muestra la lista de chats, y el usuario puede hacer clic en un chat para entrar en la pantalla de chat.
+          2. contactList: Muestra la lista de contactos del usuario (amigos).
+          3. discoveryList: Solo visual.
+          4. meList: Muestra la información personal del usuario, como su ID y foto de perfil.
 ---
 
 ## 🖼️ Capturas de Pantalla
 ![Vista de Inicio de Sesión](screenshots/login.png)
 ### Vista Principal
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-  <img src="screenshots/chatList.png" alt="chatList" width="12vw"/>
-  <img src="screenshots/contactList.png" alt="contactList" width="12vw"/>
-  <img src="screenshots/discoveryList.png" alt="discoveryList" width="12vw"/>
-  <img src="screenshots/meList.png" alt="meList" width="12vw"/>
+  <img src="screenshots/chatList.png" alt="chatList" style="width: 12vw;"/>
+  <img src="screenshots/contactList.png" alt="contactList" style="width: 12vw;"/>
+  <img src="screenshots/discoveryList.png" alt="discoveryList" style="width: 12vw;"/>
+  <img src="screenshots/meList.png" alt="meList" style="width: 12vw;"/>
 </div>
 ### Vista ChatPage
 ![ChatPage](screenshots/chatPage.png)
