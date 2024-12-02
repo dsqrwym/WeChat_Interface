@@ -131,6 +131,20 @@ class WeViewModel @Inject constructor(
         currentTheme = newTheme  // 更新 ViewModel 中的 currentTheme
     }
 
+    fun updateThemeFollowingSystem(isSystemInDarkTheme: Boolean) {
+        if (sharedStateManager.getIsFollowSystemTheme()) {
+            if (isSystemInDarkTheme) {
+                currentTheme = WeComposeTheme.Theme.Dark
+                sharedStateManager.setCurrentThemeAuto(currentTheme)
+                Log.d("Theme", "Dark")
+            } else {
+                currentTheme = WeComposeTheme.Theme.Light
+                sharedStateManager.setCurrentThemeAuto(currentTheme)
+                Log.d("Theme", "Light")
+            }
+        }
+    }
+
     // 获取当前时间的帮助函数
     private fun getCurrentTime(): String {
         return SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())

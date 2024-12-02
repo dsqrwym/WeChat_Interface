@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
             //val database = AppDatabase.getInstance(applicationContext)
             //val viewModel: WeViewModel by viewModels()
             val viewModel: WeViewModel = hiltViewModel()
+            viewModel.updateThemeFollowingSystem(isSystemInDarkTheme())
 
             WeChatInterfaceTheme(viewModel.currentTheme) {
                 Column(
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         .windowInsetsPadding(WindowInsets.navigationBars)
                         .background(WeComposeTheme.colors.background)
                 ) {
-                   NavManager(viewModel)
+                    NavManager(viewModel)
                 }
             }
         }

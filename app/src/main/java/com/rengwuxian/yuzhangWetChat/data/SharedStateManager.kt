@@ -8,10 +8,20 @@ import javax.inject.Inject
 
 class SharedStateManager @Inject constructor() {
 
+    private var isFollowSystemTheme by mutableStateOf(true)
+    fun getIsFollowSystemTheme(): Boolean = isFollowSystemTheme
+    fun setIsFollowSystemTheme(state: Boolean){
+        isFollowSystemTheme = state
+    }
+
     // 共享状态：当前主题
     private var currentTheme = WeComposeTheme.Theme.Light
     fun getCurrentTheme(): WeComposeTheme.Theme = currentTheme
     fun setCurrentTheme(theme: WeComposeTheme.Theme) {
+        isFollowSystemTheme = false
+        currentTheme = theme
+    }
+    fun setCurrentThemeAuto(theme: WeComposeTheme.Theme) {
         currentTheme = theme
     }
 
