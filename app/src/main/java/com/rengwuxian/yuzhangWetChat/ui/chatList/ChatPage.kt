@@ -238,10 +238,7 @@ fun MessageItem(msg: Msg, shakingTime: Int, shakingLevel: Int, viewModel: WeView
                                     4.dp.toPx()
                                 )
                                 addRoundRect(rect) // 添加圆角矩形路径 // Añadir el camino del rectángulo redondeado
-                                moveTo(
-                                    size.width - 10.dp.toPx(),
-                                    15.dp.toPx()
-                                ) // 绘制气泡尖角路径 // Dibujar la ruta de la punta del globo
+                                moveTo(size.width - 10.dp.toPx(), 15.dp.toPx()) // 绘制气泡尖角路径 // Dibujar la ruta de la punta del globo
                                 lineTo(size.width - 5.dp.toPx(), 20.dp.toPx())
                                 lineTo(size.width - 10.dp.toPx(), 25.dp.toPx())
                                 close() // 关闭路径 // Cerrar el camino
@@ -311,11 +308,9 @@ fun MessageItem(msg: Msg, shakingTime: Int, shakingLevel: Int, viewModel: WeView
                                     4.dp.toPx()
                                 )
                                 addRoundRect(rect) // 添加圆角矩形路径 // Añadir el camino del rectángulo redondeado
-                                moveTo(
-                                    10.dp.toPx(),
-                                    15.dp.toPx()
-                                ) // 绘制气泡尖角路径 // Dibujar la ruta de la punta del globo
+                                moveTo(10.dp.toPx(), 15.dp.toPx()) // 绘制气泡尖角路径 // Dibujar la ruta de la punta del globo
                                 lineTo(5.dp.toPx(), 20.dp.toPx())
+                                lineTo(10.dp.toPx(), 25.dp.toPx())
                             }
                         drawPath(buble, bubbleColor) // 绘制气泡 // Dibujar el globo
                     }
