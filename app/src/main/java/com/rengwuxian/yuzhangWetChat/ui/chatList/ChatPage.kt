@@ -1,6 +1,7 @@
 package com.rengwuxian.yuzhangWetChat.ui.chatList
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -53,7 +54,6 @@ import androidx.navigation.NavHostController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.data.Msg
-import com.rengwuxian.yuzhangWetChat.ui.Home
 import com.rengwuxian.yuzhangWetChat.ui.TopBar
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 import kotlinx.coroutines.delay
@@ -195,7 +195,8 @@ fun MessageItem(msg: Msg, shakingTime: Int, shakingLevel: Int, viewModel: WeView
     val shakingAngleBubble =
         remember { Animatable(0f) } // 初始化消息气泡的震动角度 // Inicializar el ángulo de sacudida del globo del mensaje
     LaunchedEffect(shakingTime) { // 当震动时间变化时启动动画 // Iniciar animación cuando cambie el tiempo de sacudida
-        if (shakingTime != 0) { // 如果震动时间不为0，执行震动动画 // Si el tiempo de sacudida no es 0, ejecutar la animación de sacudida
+        if (shakingTime != 0 && shakingLevel < 15) { // 如果震动时间不为0，执行震动动画 // Si el tiempo de sacudida no es 0, ejecutar la animación de sacudida
+                Log.d("最后的消息",shakingLevel.toString())
             delay(shakingLevel.toLong() * 30) // 根据震动级别延迟不同时间 // Retrasar según el nivel de sacudida
             shakingAngleBubble.animateTo(
                 targetValue = 0f,

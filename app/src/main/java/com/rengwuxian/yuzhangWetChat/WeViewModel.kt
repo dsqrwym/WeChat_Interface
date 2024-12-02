@@ -174,10 +174,9 @@ class WeViewModel @Inject constructor(
                     receiverId = chat.friend.id
                     )
 
-                messageDao.insertMessage(newMsg)
+                val insertedId = messageDao.insertMessage(newMsg)
                 // 填充消息的 `from` 字段为当前用户
                 newMsg.from = me
-                val insertedId = messageDao.insertMessage(newMsg) // 返回新插入的 ID
                 newMsg.id = insertedId.toInt() // 将新的 id 设置到消息对象中
                 chat.msgs.add(newMsg)
             }
