@@ -1,6 +1,5 @@
 package com.rengwuxian.yuzhangWetChat
 
-import android.util.Log
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
@@ -32,8 +31,14 @@ fun NavManager(viewModel: WeViewModel) {
 
         ) {
         composable("home") {
-            Box {
-                Home(viewModel, navController)
+            val isLoaded = remember { mutableStateOf(false) }
+            LaunchedEffect(Unit) {
+                isLoaded.value = true
+            }
+            if (isLoaded.value) {
+                Box {
+                    Home(viewModel, navController)
+                }
             }
         }
 

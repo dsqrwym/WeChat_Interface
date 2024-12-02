@@ -23,7 +23,7 @@ interface MessageDao {
     suspend fun getMessageById(msgId: Int): Msg?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMessage(msg: Msg)
+    suspend fun insertMessage(msg: Msg):Long
 
     @Update
     suspend fun updateMessage(msg: Msg)

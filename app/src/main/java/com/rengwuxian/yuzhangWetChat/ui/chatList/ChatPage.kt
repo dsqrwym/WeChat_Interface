@@ -33,6 +33,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +53,7 @@ import androidx.navigation.NavHostController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.data.Msg
+import com.rengwuxian.yuzhangWetChat.ui.Home
 import com.rengwuxian.yuzhangWetChat.ui.TopBar
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 import kotlinx.coroutines.delay
@@ -74,8 +76,21 @@ fun ChatPage(viewModel: WeViewModel, navHostController: NavHostController) {
     }
 
     val listState = rememberLazyListState()  // 添加滚动状态
-    LaunchedEffect(chat?.msgs?.size) {
-        listState.animateScrollToItem(chat?.msgs?.size?.minus(1) ?: 0) // 滚动到最后一条消息
+    val currentSize by rememberUpdatedState(chat?.msgs?.size)
+    LaunchedEffect(Unit) {
+        var index = 0
+        if (currentSize?.minus(1) !! >= 0){
+            index = currentSize?.minus(1) ?: 0
+        }
+        listState.scrollToItem(index)
+    }
+    LaunchedEffect(currentSize) {
+        // 检查是否已经在最后一项，如果不在，则滚动
+        val visibleItems = listState.layoutInfo.visibleItemsInfo
+        val lastVisibleIndex = visibleItems.lastOrNull()?.index ?: -1
+        if (lastVisibleIndex != currentSize?.minus(1)) {
+            listState.animateScrollToItem(currentSize?.minus(1) ?: 0)
+        }
     }
     if (chat != null) { // 如果有聊天数据，则显示聊天界面 // Si hay datos de chat, mostrar la interfaz de chat
         Column(
@@ -147,7 +162,7 @@ fun ChatPage(viewModel: WeViewModel, navHostController: NavHostController) {
                         .offset(shakingOffset.value.dp), // 设置偏移量动画的值，应用震动效果 // Aplicar el valor de desplazamiento de la animación
                     state = listState
                 ) {
-                    items(chat.msgs.size) { index: Int ->
+                    items(chat.msgs.size, key = {chat.msgs[it].id}) { index: Int ->
                         val msg = chat.msgs[index] // 获取当前消息 // Obtener el mensaje actual
                         MessageItem(
                             msg,
@@ -265,9 +280,9 @@ fun MessageItem(msg: Msg, shakingTime: Int, shakingLevel: Int, viewModel: WeView
                     .graphicsLayer(
                         rotationZ = -shakingAngleBubble.value * 0.6f, // 头像震动角度，反向旋转 // Ángulo de sacudida del avatar, rotación inversa
                         transformOrigin = TransformOrigin(
-                            1f,
+                            0f,
                             0f
-                        ) // 设置旋转原点为右上角 // Establecer el origen de rotación en la esquina superior derecha
+                        ) // 设置旋转原点为左上角 // Establecer el origen de rotación en la esquina superior derecha
                     )
                     .size(40.dp) // 设置头像大小 // Establecer tamaño del avatar
                     .clip(RoundedCornerShape(4.dp)) // 设置头像圆角 // Establecer esquina redondeada para el avatar
@@ -280,9 +295,9 @@ fun MessageItem(msg: Msg, shakingTime: Int, shakingLevel: Int, viewModel: WeView
                     .graphicsLayer(
                         rotationZ = -shakingAngleBubble.value, // 震动角度应用到消息气泡 // Aplicar ángulo de sacudida al globo del mensaje
                         transformOrigin = TransformOrigin(
-                            1f,
+                            0f,
                             0f
-                        ) // 设置旋转原点为右上角 // Establecer el origen de la rotación en la esquina superior derecha
+                        ) // 设置旋转原点为左上角 // Establecer el origen de la rotación en la esquina superior derecha
                     )
                     .drawBehind {
                         val buble =

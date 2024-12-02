@@ -177,6 +177,8 @@ class WeViewModel @Inject constructor(
                 messageDao.insertMessage(newMsg)
                 // 填充消息的 `from` 字段为当前用户
                 newMsg.from = me
+                val insertedId = messageDao.insertMessage(newMsg) // 返回新插入的 ID
+                newMsg.id = insertedId.toInt() // 将新的 id 设置到消息对象中
                 chat.msgs.add(newMsg)
             }
             //chat.msgs.add(Msg(User.Me, text, getCurrentTime()).apply { read = false })
