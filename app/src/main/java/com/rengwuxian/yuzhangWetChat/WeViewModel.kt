@@ -147,7 +147,7 @@ class WeViewModel @Inject constructor(
 
     // 获取当前时间的帮助函数
     private fun getCurrentTime(): String {
-        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+        return SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
     }
 
     fun startChat(chat: Chat) {
@@ -157,7 +157,7 @@ class WeViewModel @Inject constructor(
             if(index != null) {
                 val newMessage = messageDao.getMessageById(index)
                 if (newMessage != null) {
-                    newMessage.read = false
+                    newMessage.read = true
                     messageDao.updateMessage(newMessage)
                 }
             }
