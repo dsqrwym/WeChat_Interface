@@ -109,7 +109,7 @@ private fun ChatListItem(chat: Chat, viewModel: WeViewModel, navHostController: 
         // 显示消息时间
         // Mostrar la hora del mensaje
         Text(
-            chat.msgs.lastOrNull()?.time ?: "null", // 最后一条消息时间 // Hora del último mensaje
+            chat.msgs.lastOrNull()?.time ?: "", // 最后一条消息时间 // Hora del último mensaje
             Modifier.padding(8.dp, 8.dp, 12.dp, 8.dp), // 设置内边距 // Margen interno
             fontSize = 11.sp, // 字体大小 // Tamaño de fuente
             color = WeComposeTheme.colors.textSecondary // 字体颜色 // Color de texto

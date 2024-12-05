@@ -1,7 +1,6 @@
 package com.rengwuxian.yuzhangWetChat.ui.chatList
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -48,6 +47,7 @@ import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -350,6 +350,7 @@ fun ChatBottomBar(onBombClicked: () -> Unit, onClickSend: (String) -> Unit) {
                 .clip(MaterialTheme.shapes.small) // 设置文本框圆角 // Establecer esquinas redondeadas para el cuadro de texto
                 .background(WeComposeTheme.colors.textFieldBackground) // 设置背景色 // Establecer color de fondo
                 .padding(start = 8.dp, top = 10.dp, end = 8.dp), // 内部填充 // Relleno interno
+            textStyle = TextStyle(color = WeComposeTheme.colors.textPrimary),
             cursorBrush = SolidColor(WeComposeTheme.colors.textPrimary) // 设置光标颜色 // Establecer color del cursor
         )
         Text(
