@@ -1,7 +1,6 @@
 package com.rengwuxian.yuzhangWetChat.ui
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,14 +45,15 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import com.rengwuxian.yuzhangWetChat.LocalNavController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Login(navController: NavHostController) {
+fun Login() {
+    val navController = LocalNavController.current
     val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
     var userid by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -153,7 +153,6 @@ fun Login(navController: NavHostController) {
                                 viewModel.login(userid, password) {
                                     if (it) {
                                         navController.navigate("home")
-                                        Log.d("Login", "${it}")
                                     } else {
                                         userid = ""
                                         password = ""

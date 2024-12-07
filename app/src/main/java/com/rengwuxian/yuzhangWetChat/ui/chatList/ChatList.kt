@@ -29,7 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import com.rengwuxian.yuzhangWetChat.LocalNavController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.data.Chat
@@ -39,7 +39,7 @@ import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 // 显示聊天列表的主界面
 // Interfaz principal que muestra la lista de chats
 @Composable
-fun ChatList(navHostController: NavHostController) {
+fun ChatList() {
     val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
 
 
@@ -53,7 +53,7 @@ fun ChatList(navHostController: NavHostController) {
         TopBar(title = stringResource(R.string.app_name)) // 顶部标题栏 // Barra superior con título
         LazyColumn(Modifier.background(WeComposeTheme.colors.listItem)) { // 可滚动的聊天列表 // Lista de chats desplazable
             itemsIndexed(chats) { index, chat ->
-                ChatListItem(chat, viewModel, navHostController) // 每一项显示聊天数据 // Cada ítem muestra los datos del chat
+                ChatListItem(chat, viewModel) // 每一项显示聊天数据 // Cada ítem muestra los datos del chat
                 if (index < chats.lastIndex) { // 如果不是最后一项，显示分隔线 // Si no es el último ítem, mostrar separador
                     HorizontalDivider(
                         Modifier.padding(start = 68.dp), // 左侧偏移 68dp // Desplazamiento izquierdo de 68dp
@@ -69,14 +69,14 @@ fun ChatList(navHostController: NavHostController) {
 // 聊天列表中的单项布局
 // Composición de cada ítem en la lista de chats
 @Composable
-private fun ChatListItem(chat: Chat, viewModel: WeViewModel, navHostController: NavHostController) {
-   // val viewModel: WeViewModel = viewModel() // 绑定 ViewModel // Asociar con ViewModel
+private fun ChatListItem(chat: Chat, viewModel: WeViewModel) {
+    val navController = LocalNavController.current
     Row(
         Modifier
             .clickable { // 点击事件，启动聊天详情页面
                 // Al hacer clic, iniciar la pantalla de detalles del chat
                 viewModel.startChat(chat)
-                navHostController.navigate("chatpage")
+                navController.navigate("chatpage")
             }
             .fillMaxWidth() // 填满宽度 // Ocupa todo el ancho
     ) {

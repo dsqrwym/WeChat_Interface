@@ -53,7 +53,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import com.rengwuxian.yuzhangWetChat.LocalNavController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.data.Msg
@@ -63,11 +63,11 @@ import kotlinx.coroutines.delay
 
 @SuppressLint("UseOfNonLambdaOffsetOverload") // 取消警告，因为我们使用的是非lambda的 offset 方法 // Desactivar la advertencia ya que estamos usando un método de desplazamiento no-lambda
 @Composable
-fun ChatPage(navHostController: NavHostController) {
+fun ChatPage() {
     val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
-
+    val navController = LocalNavController.current
     BackHandler {
-        navHostController.popBackStack()
+        navController.popBackStack()
         viewModel.endChat()
     }
 
@@ -108,7 +108,7 @@ fun ChatPage(navHostController: NavHostController) {
             TopBar(title = chat.friend.name) { // 顶部栏显示好友名字，并提供结束聊天功能 // Barra superior con el nombre del amigo y función para terminar chat
                 viewModel.endChat() // 结束当前聊天 // Finalizar chat actual
                 keyboardController?.hide()
-                navHostController.popBackStack()
+                navController.popBackStack()
             }
             Box(
                 Modifier
