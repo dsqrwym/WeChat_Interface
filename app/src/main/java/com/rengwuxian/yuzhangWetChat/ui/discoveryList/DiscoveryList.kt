@@ -17,14 +17,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rengwuxian.yuzhangWetChat.R
-import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.ui.TopBar
 import com.rengwuxian.yuzhangWetChat.ui.chatList.unread
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 
 @Composable
-fun DiscoveryListTopBar(viewModel: WeViewModel) {
-    TopBar(title = stringResource(R.string.tab_item_discovery), viewModel)
+fun DiscoveryListTopBar() {
+    TopBar(title = stringResource(R.string.tab_item_discovery))
 }
 
 @Composable
@@ -64,9 +63,9 @@ fun DiscoveryListItem(
 }
 
 @Composable
-fun DiscoveryList(viewModel: WeViewModel) {
+fun DiscoveryList() {
     Column(Modifier.fillMaxSize()) {
-        DiscoveryListTopBar(viewModel)
+        DiscoveryListTopBar()
         Box(
             Modifier
                 .background(WeComposeTheme.colors.background)

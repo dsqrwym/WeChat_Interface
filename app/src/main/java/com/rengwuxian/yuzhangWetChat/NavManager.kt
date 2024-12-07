@@ -23,7 +23,7 @@ import com.rengwuxian.yuzhangWetChat.ui.chatList.ChatPage
 //import com.rengwuxian.yuzhangWetChat.ui.chatList.offsetPresent
 
 @Composable
-fun NavManager(viewModel: WeViewModel) {
+fun NavManager() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -37,13 +37,13 @@ fun NavManager(viewModel: WeViewModel) {
             }
             if (isLoaded.value) {
                 Box {
-                    Home(viewModel, navController)
+                    Home(navController)
                 }
             }
         }
 
         composable("login") {
-            Login(navController, viewModel)
+            Login(navController)
         }
 
         composable(
@@ -85,7 +85,7 @@ fun NavManager(viewModel: WeViewModel) {
                 isLoaded.value = true
             }
             if (isLoaded.value) {
-                ChatPage(viewModel, navController)
+                ChatPage(navController)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.rengwuxian.yuzhangWetChat.ui.contactList
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,10 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.data.User
@@ -30,8 +33,8 @@ import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 
 
 @Composable
-fun ContactListTopBar(viewModel: WeViewModel){
-    TopBar(title = stringResource(R.string.tab_item_contacts), viewModel = viewModel) // 顶部栏显示“联系人”标题 / Barra superior que muestra el título "Contactos"
+fun ContactListTopBar() {
+    TopBar(title = stringResource(R.string.tab_item_contacts)) // 顶部栏显示“联系人”标题 / Barra superior que muestra el título "Contactos"
 }
 
 @Composable
@@ -61,9 +64,11 @@ fun ContactListItem(
 }
 
 @Composable
-fun ContactList(viewModel: WeViewModel) {
+fun ContactList() {
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
+
     Column(Modifier.fillMaxSize()) {
-        ContactListTopBar(viewModel) // 显示顶部栏 / Muestra la barra superior
+        ContactListTopBar() // 显示顶部栏 / Muestra la barra superior
         Box(
             Modifier
                 .background(WeComposeTheme.colors.background) // 设置背景颜色 / Establece el color de fondo

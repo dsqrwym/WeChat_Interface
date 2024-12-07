@@ -1,6 +1,7 @@
 package com.rengwuxian.yuzhangWetChat.ui.chatList
 
 import android.annotation.SuppressLint
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -45,11 +46,13 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
@@ -60,12 +63,13 @@ import kotlinx.coroutines.delay
 
 @SuppressLint("UseOfNonLambdaOffsetOverload") // 取消警告，因为我们使用的是非lambda的 offset 方法 // Desactivar la advertencia ya que estamos usando un método de desplazamiento no-lambda
 @Composable
-fun ChatPage(viewModel: WeViewModel, navHostController: NavHostController) {
+fun ChatPage(navHostController: NavHostController) {
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
+
     BackHandler {
         navHostController.popBackStack()
         viewModel.endChat()
     }
-    //val viewModel: WeViewModel = viewModel() // 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
 
     val chat = viewModel.currentChat // 获取当前聊天对象 // Obtener el chat actual
 
@@ -101,10 +105,7 @@ fun ChatPage(viewModel: WeViewModel, navHostController: NavHostController) {
         ) {
             val keyboardController = LocalSoftwareKeyboardController.current
 
-            TopBar(
-                title = chat.friend.name,
-                viewModel = viewModel
-            ) { // 顶部栏显示好友名字，并提供结束聊天功能 // Barra superior con el nombre del amigo y función para terminar chat
+            TopBar(title = chat.friend.name) { // 顶部栏显示好友名字，并提供结束聊天功能 // Barra superior con el nombre del amigo y función para terminar chat
                 viewModel.endChat() // 结束当前聊天 // Finalizar chat actual
                 keyboardController?.hide()
                 navHostController.popBackStack()

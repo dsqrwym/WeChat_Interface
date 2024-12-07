@@ -1,5 +1,6 @@
 package com.rengwuxian.yuzhangWetChat.ui
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -14,14 +15,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 
 @Composable
-fun TopBar(title: String, viewModel: WeViewModel, onBack: (() -> Unit)? = null) {
+fun TopBar(title: String, onBack: (() -> Unit)? = null) {
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)
     Box(
         Modifier
             .background(WeComposeTheme.colors.background)

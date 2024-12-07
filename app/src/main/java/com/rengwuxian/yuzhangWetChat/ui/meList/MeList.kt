@@ -1,5 +1,6 @@
 package com.rengwuxian.yuzhangWetChat.ui.meList
 
+import androidx.activity.ComponentActivity
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,11 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
@@ -130,7 +133,9 @@ fun MeListItem(
 }
 
 @Composable
-fun MeList(viewModel: WeViewModel) {
+fun MeList() {
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
+
     Box(
         Modifier
             .background(WeComposeTheme.colors.background)

@@ -1,6 +1,7 @@
 package com.rengwuxian.yuzhangWetChat.ui.chatList
 
 import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,10 +23,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.rengwuxian.yuzhangWetChat.R
 import com.rengwuxian.yuzhangWetChat.WeViewModel
@@ -36,7 +39,10 @@ import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 // 显示聊天列表的主界面
 // Interfaz principal que muestra la lista de chats
 @Composable
-fun ChatList(viewModel: WeViewModel, navHostController: NavHostController) {
+fun ChatList(navHostController: NavHostController) {
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
+
+
     val chats = viewModel.chats
     Log.d("WeViewModel ChatList", "chats.size: ${chats.size}")
     Column(
@@ -44,7 +50,7 @@ fun ChatList(viewModel: WeViewModel, navHostController: NavHostController) {
             .background(WeComposeTheme.colors.background) // 设置背景色 // Establecer el color de fondo
             .fillMaxSize() // 填充整个屏幕 // Ocupa toda la pantalla
     ) {
-        TopBar(title = stringResource(R.string.app_name), viewModel = viewModel) // 顶部标题栏 // Barra superior con título
+        TopBar(title = stringResource(R.string.app_name)) // 顶部标题栏 // Barra superior con título
         LazyColumn(Modifier.background(WeComposeTheme.colors.listItem)) { // 可滚动的聊天列表 // Lista de chats desplazable
             itemsIndexed(chats) { index, chat ->
                 ChatListItem(chat, viewModel, navHostController) // 每一项显示聊天数据 // Cada ítem muestra los datos del chat

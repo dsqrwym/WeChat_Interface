@@ -1,10 +1,13 @@
 package com.rengwuxian.yuzhangWetChat.ui
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -18,9 +21,10 @@ import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalPagerApi::class)
-fun Home(viewModel: WeViewModel, navHostController: NavHostController) {
+fun Home(navHostController: NavHostController) {
     // 创建 PagerState 并绑定 ViewModel 的选中状态
     // Crear PagerState y enlazarlo con el estado seleccionado de ViewModel
+    val viewModel: WeViewModel = hiltViewModel(LocalContext.current as ComponentActivity)// 获取当前的 ViewModel 实例 // Obtener la instancia actual del ViewModel
     val pagerState = rememberPagerState(viewModel.selectedTab)
     val coroutineScope = rememberCoroutineScope() // 用于执行异步任务 // Para ejecutar tareas asincrónicas
 
@@ -35,10 +39,10 @@ fun Home(viewModel: WeViewModel, navHostController: NavHostController) {
             state = pagerState // 绑定 PagerState 状态，用于处理页面切换逻辑 // Asociar el estado PagerState para manejar la lógica de cambio de páginas
         ) { page: Int ->
             when (page) {
-                0 -> ChatList(viewModel, navHostController) // 显示聊天列表页 // Mostrar la página de lista de chats
-                1 -> ContactList(viewModel) // 显示联系人列表页 // Mostrar la página de lista de contactos
-                2 -> DiscoveryList(viewModel) // 朋友圈 // Mostrar la página de descubrimientos (por ejemplo, Momentos o contenido popular)
-                3 -> MeList(viewModel) // 显示“我”的个人页面，包含用户信息和设置 // Mostrar la página "Yo", que incluye información del usuario y configuración
+                0 -> ChatList(navHostController) // 显示聊天列表页 // Mostrar la página de lista de chats
+                1 -> ContactList() // 显示联系人列表页 // Mostrar la página de lista de contactos
+                2 -> DiscoveryList() // 朋友圈 // Mostrar la página de descubrimientos (por ejemplo, Momentos o contenido popular)
+                3 -> MeList() // 显示“我”的个人页面，包含用户信息和设置 // Mostrar la página "Yo", que incluye información del usuario y configuración
             }
         }
 

@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         .windowInsetsPadding(WindowInsets.navigationBars)
                         .background(WeComposeTheme.colors.background)
                 ) {
-                    NavManager(viewModel)
+                    NavManager()
                 }
             }
         }
