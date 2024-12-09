@@ -6,8 +6,7 @@ import androidx.compose.animation.core.EaseOut
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -25,7 +24,7 @@ import com.rengwuxian.yuzhangWetChat.ui.chatList.ChatPage
 
 //import com.rengwuxian.yuzhangWetChat.ui.chatList.offsetPresent
 
-val LocalNavController = staticCompositionLocalOf<NavController>{
+val LocalNavController = staticCompositionLocalOf<NavController> {
     error("No NavController found!")
 }
 
@@ -58,10 +57,7 @@ fun NavManager() {
             composable(
                 route = "chatpage",
                 enterTransition = {
-                    scaleIn(
-                        initialScale = 0.8f,
-                        animationSpec = tween(300)
-                    ) + fadeIn(
+                    fadeIn(
                         animationSpec = tween(500, easing = LinearEasing)
                     ) + slideIntoContainer(
                         animationSpec = tween(500, easing = EaseIn),
@@ -69,9 +65,8 @@ fun NavManager() {
                     )
                 },
                 exitTransition = {
-                    scaleOut(
-                        targetScale = 0.8f,
-                        animationSpec = tween(300)
+                    fadeOut(
+                        animationSpec = tween(500, easing = LinearEasing)
                     ) + slideOutOfContainer(
                         animationSpec = tween(500, easing = EaseOut),
                         towards = AnimatedContentTransitionScope.SlideDirection.End
