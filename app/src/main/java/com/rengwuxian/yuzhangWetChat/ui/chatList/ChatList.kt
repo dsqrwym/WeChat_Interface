@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -107,9 +108,11 @@ private fun ChatListItem(chat: Chat, viewModel: WeViewModel) {
                 color = WeComposeTheme.colors.textPrimary // 字体颜色 // Color de texto
             )
             Text(
-                chat.msgs.lastOrNull()?.text ?: "", // 显示最后一条消息内容 // Mostrar el contenido del último mensaje
+                chat.msgs.lastOrNull()?.text?.substringBefore('\n') ?: "", // 显示最后一条消息内容 // Mostrar el contenido del último mensaje
                 fontSize = 14.sp, // 字体大小 // Tamaño de fuente
-                color = WeComposeTheme.colors.textPrimary // 字体颜色 // Color de texto
+                color = WeComposeTheme.colors.textPrimary, // 字体颜色 // Color de texto
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
         // 显示消息时间
