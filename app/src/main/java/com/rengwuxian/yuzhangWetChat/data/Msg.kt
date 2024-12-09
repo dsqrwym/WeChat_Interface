@@ -3,6 +3,7 @@ package com.rengwuxian.yuzhangWetChat.data
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity(tableName = "messages")
 data class Msg(
@@ -18,4 +19,6 @@ data class Msg(
     // 非数据库字段，用来在代码中直接访问 User 对象
     @Ignore
     var from: User? = null
+    @Ignore
+    var parsedTime: Date? = null
 }

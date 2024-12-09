@@ -44,6 +44,8 @@ class WeViewModel @Inject constructor(
 
     var currentChat: Chat? by mutableStateOf(sharedStateManager.getCurrentChat())
 
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
     init {
         //loadMockData()//Esto es para añadir dados de prueba
         loadContacts()
@@ -104,22 +106,22 @@ class WeViewModel @Inject constructor(
             Chat(
                 friend = gaolaoshi,
                 msgs = mutableStateListOf(
-                    Msg(text = "锄禾日当午", time = "14:20", read = true, userId = gaolaoshi.id, receiverId = me.id),
-                    Msg("汗滴禾下土", "14:20", read = true, me.id, gaolaoshi.id),
-                    Msg("谁知盘中餐", "14:20", true, gaolaoshi.id, me.id),
-                    Msg("粒粒皆辛苦", "14:20", true, me.id, gaolaoshi.id),
-                    Msg("唧唧复唧唧，木兰当户织。不闻机杼声，惟闻女叹息。", "14:20", true, gaolaoshi.id, me.id),
-                    Msg("双兔傍地走，安能辨我是雄雌？", "14:20", true, me.id, gaolaoshi.id),
-                    Msg("床前明月光，疑是地上霜。", "14:20", true, gaolaoshi.id, me.id),
-                    Msg("吃饭吧？", "14:20", true, me.id, gaolaoshi.id),
+                    Msg(text = "锄禾日当午", time = "2024-11-30 14:20", read = true, userId = gaolaoshi.id, receiverId = me.id),
+                    Msg("汗滴禾下土", "2024-11-30 14:20", read = true, me.id, gaolaoshi.id),
+                    Msg("谁知盘中餐", "2024-11-30 14:20", true, gaolaoshi.id, me.id),
+                    Msg("粒粒皆辛苦", "2024-11-30 14:20", true, me.id, gaolaoshi.id),
+                    Msg("唧唧复唧唧，木兰当户织。不闻机杼声，惟闻女叹息。", "2024-11-30 14:20", true, gaolaoshi.id, me.id),
+                    Msg("双兔傍地走，安能辨我是雄雌？", "2024-11-30 14:20", true, me.id, gaolaoshi.id),
+                    Msg("床前明月光，疑是地上霜。", "2024-11-30 14:20", true, gaolaoshi.id, me.id),
+                    Msg("吃饭吧？", "2024-11-30 14:20", true, me.id, gaolaoshi.id),
                 )
             ),
             Chat(
                 friend = zhangtianshi,
                 msgs = mutableStateListOf(
-                    Msg("哈哈哈", "13:48", true, zhangtianshi.id, me.id),
-                    Msg("哈哈昂", "13:48", true, me.id, zhangtianshi.id),
-                    Msg("你笑个屁呀", "13:48", false, zhangtianshi.id, me.id)
+                    Msg("哈哈哈", "2024-11-30 13:48", true, zhangtianshi.id, me.id),
+                    Msg("哈哈昂", "2024-11-30 13:48", true, me.id, zhangtianshi.id),
+                    Msg("你笑个屁呀", "2024-11-30 13:48", false, zhangtianshi.id, me.id)
                 )
             )
         )
@@ -147,7 +149,7 @@ class WeViewModel @Inject constructor(
 
     // 获取当前时间的帮助函数
     private fun getCurrentTime(): String {
-        return SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
+        return dateFormat.format(Date())
     }
 
     fun startChat(chat: Chat) {
@@ -215,15 +217,16 @@ class WeViewModel @Inject constructor(
                 val messages = messagesWithUser.map { msgWithUser ->
                     msgWithUser.msg.apply {
                         from = msgWithUser.user // 手动填充 from 字段
+                        parsedTime = runCatching { dateFormat.parse(this.time) }.getOrNull()
                     }
-                }
+                }.sortedBy { it.parsedTime }
 
                 chats = contacts.map { contact ->
                     val userMessages = messages.filter {
                         (it.userId == currentUser?.id && it.receiverId == contact.id || it.userId == contact.id && it.receiverId == currentUser?.id)
                     }
                     Chat(contact, userMessages.toMutableStateList())
-                }
+                }.sortedByDescending { it.msgs.lastOrNull()?.parsedTime }
             }
         }
     }

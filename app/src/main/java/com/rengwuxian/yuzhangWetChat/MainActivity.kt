@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.rengwuxian.yuzhangWetChat.data.database.AppDatabase
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeChatInterfaceTheme
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            //val database = AppDatabase.getInstance(applicationContext)
+            //deleteDatabase("chat_database")
             //val viewModel: WeViewModel by viewModels()
             val viewModel: WeViewModel = hiltViewModel()
             viewModel.updateThemeFollowingSystem(isSystemInDarkTheme())
