@@ -6,14 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.rengwuxian.yuzhangWetChat.data.database.AppDatabase
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeChatInterfaceTheme
 import com.rengwuxian.yuzhangWetChat.ui.theme.WeComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,11 +32,12 @@ class MainActivity : ComponentActivity() {
             viewModel.updateThemeFollowingSystem(isSystemInDarkTheme())
 
             WeChatInterfaceTheme(viewModel.currentTheme) {
-                Column(
+                Box(
                     modifier = Modifier
+                        .fillMaxSize()
+                        .background(WeComposeTheme.colors.background)
                         .windowInsetsPadding(WindowInsets.statusBars)
                         .windowInsetsPadding(WindowInsets.navigationBars)
-                        .background(WeComposeTheme.colors.background)
                 ) {
                     NavManager()
                 }
